@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Resource & Employment Assistance Portal</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #f8fafc; color: #1e293b; }
+        
+        .top-bar { background-color: #0f172a; color: #fff; text-align: center; padding: 12px 15px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border-bottom: 3px solid #ef4444; }
+        
+        .hero { background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url('https://unsplash.com') no-repeat center center/cover; color: white; text-align: center; padding: 80px 20px 120px 20px; }
+        .hero h1 { font-size: 40px; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.5px; }
+        .hero p { font-size: 18px; max-width: 800px; margin: 0 auto 25px auto; opacity: 0.9; line-height: 1.6; }
+        
+        .badges { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .badge { background: rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 500; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+        /* Category Filter Navigation */
+        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin: -40px auto 40px auto; max-width: 1200px; padding: 0 20px; flex-wrap: wrap; }
+        .tab-btn { background: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; color: #475569; border: 1px solid #e2e8f0; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); text-decoration: none; }
+        .tab-btn:hover { background: #f1f5f9; color: #0f172a; }
+        .tab-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
+
+        .container { max-width: 1200px; margin: 0 auto 60px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: all 0.3s ease; display: flex; flex-direction: column; border: 1px solid #e2e8f0; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        
+        .card-image { height: 180px; background-size: cover; background-position: center; position: relative; }
+        .status-tag { position: absolute; top: 15px; left: 15px; background: #10b981; color: white; padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .category-tag { position: absolute; bottom: 15px; right: 15px; background: rgba(15, 23, 42, 0.8); color: white; padding: 4px 10px; font-size: 11px; font-weight: 500; border-radius: 4px; backdrop-filter: blur(4px); }
+        
+        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-content h3 { font-size: 20px; color: #0f172a; margin-bottom: 10px; font-weight: 700; line-height: 1.4; }
+        .card-content p { color: #64748b; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+        
+        .meta-info { border-top: 1px solid #f1f5f9; padding-top: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; font-size: 13px; color: #64748b; font-weight: 600; }
+        .meta-info span { display: flex; align-items: center; gap: 5px; }
+
+        .btn { display: block; text-align: center; background: #2563eb; color: white; padding: 14px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background 0.2s; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.2); }
+        .btn:hover { background: #1d4ed8; }
+        .btn-green { background: #10b981; box-shadow: 0 4px 6px -1px rgba(16,185,129,0.2); }
+        .btn-green:hover { background: #059669; }
+        .btn-purple { background: #8b5cf6; box-shadow: 0 4px 6px -1px rgba(139,92,246,0.2); }
+        .btn-purple:hover { background: #7c3aed; }
+
+        footer { text-align: center; padding: 40px 20px; background: #0f172a; color: #94a3b8; font-size: 13px; line-height: 1.8; border-top: 5px solid #334155; }
+        footer a { color: #38bdf8; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 30px; }
+            .nav-tabs { margin-top: 20px; gap: 5px; }
+            .tab-btn { padding: 8px 12px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        🇺🇸 Official US Citizens Resource Network & Benefit Hub
+    </div>
+
+    <div class="hero">
+        <div class="badges">
+            <span class="badge">🔒 SSA & HUD Compliant Portal</span>
+            <span class="badge">⏱️ Updated: Live</span>
+            <span class="badge">📍 All 50 States Covered</span>
+        </div>
+        <h1>Available Assistance, Careers & Payouts</h1>
+        <p>Select a verified category below to access active remote employment positions, housing aid programs, relief grants, and official financial promotional rewards.</p>
+    </div>
+
+    <!-- Category Tabs for Easy Navigation -->
+    <div class="nav-tabs">
+        <a href="#" class="tab-btn active">All Resources</a>
+        <a href="#jobs" class="tab-btn">💼 Jobs</a>
+        <a href="#housing" class="tab-btn">🏠 Housing</a>
+        <a href="#rewards" class="tab-btn">🎁 Rewards</a>
+        <a href="#grants" class="tab-btn">💰 Financial Grants</a>
+    </div>
+
+    <div class="container">
+
+        <!-- SLOT 1: JOB (Data Entry) -->
+        <div class="card" id="jobs">
+            <div class="card-image" style="background-image: url('https://unsplash.com');">
+                <span class="status-tag">Hiring</span>
+                <span class="category-tag">Employment</span>
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3>Remote Data Entry Clerk</h3>
+                    <p>Enter digital records into corporate systems. Flexible hours, fully remote work from home. High-speed internet required.</p>
+                </div>
+                <div>
+                    <div class="meta-info"><span>💰 \$25 - \$38 / Hr</span><span>⏱️ Full/Part-Time</span></div>
+                    <a href="YOUR_CPA_LINK_HERE" class="btn" target="_blank" rel="nofollow">Apply Instantly</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLOT 2: JOB (Product Tester) -->
+        <div class="card">
+            <div class="card-image" style="background-image: url('https://unsplash.com');">
+                <span class="status-tag">Open Slots</span>
+                <span class="category-tag">Employment</span>
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3>Online Product & Survey Reviewer</h3>
+                    <p>Get paid to test new products and share your honest feedback. Work on your own schedule using a phone or laptop.</p>
+                </div>
+                <div>
+                    <div class="meta-info"><span>💰 Up to \$450/Week</span><span>⏱️ Flexible Hours</span></div>
+                    <a href="YOUR_CPA_LINK_HERE" class="btn" target="_blank" rel="nofollow">Start Testing</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLOT 3: HOUSING (Rent Assistance) -->
+        <div class="card" id="housing">
+            <div class="card-image" style="background-image: url('https://unsplash.com');">
+                <span class="status-tag" style="background: #f59e0b;">Emergency Aid</span>
+                <span class="category-tag">Housing</span>
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3>2026 Rent & Utility Assistance</h3>
+                    <p>Get emergency financial relief to cover your monthly rent payments, past-due balances, or utility bills. Rapid approval.</p>
+                </div>
+                <div>
+                    <div class="meta-info"><span>🏠 Up to \$3,000 Support</span><span>📅 Active Program</span></div>
+                    <a href="YOUR_CPA_LINK_HERE" class="btn btn-purple" target="_blank" rel="nofollow">Check Rent Eligibility</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLOT 4: HOUSING (Section 8 Voucher) -->
+        <div class="card">
+            <div class="card-image" style="background-image: url('https://unsplash.com');">
+                <span class="status-tag" style="background: #f59e0b;">Low Income</span>
+                <span class="category-tag">Housing</span>
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3>Section 8 Housing Voucher Application</h3>
+                    <p>Find available low-income housing vouchers and open waiting lists in your state. Apply for affordable family housing programs.</p>
+                </div>
+                <div>
+                    <div class="meta-info"><span>🔑 Local State Subsidies</span><span>📍 Nationwide</span></div>
+                    <a href="YOUR_CPA_LINK_HERE" class="btn btn-purple" target="_blank" rel="nofollow">Find Open Lists</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLOT 5: REWARDS (Cash App) -->
+        <div class="card" id="rewards">
